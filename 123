@@ -1,1 +1,284 @@
-123123123
+The biggest mistake people will make when reading this BRD is thinking AAMS is an AI chatbot.
+It isn't.
+AAMS is basically a smart virtual Technical Support Agent that sits in front of your alert queue 24/7. It watches alerts, investigates them, decides what to do, and either closes them or routes them to the right team.
+The Problem AAMS Is Trying to Solve
+Today the process looks like this:
+Monitoring tool generates an alert.
+Alert creates a ticket in Salesforce.
+TSA opens ticket manually.
+TSA checks logs.
+TSA decides:
+Real issue?
+False alert?
+Just informational?
+Needs escalation?
+TSA updates ticket.
+TSA closes or routes ticket.
+The challenge is:
+Around 100 alerts every day.
+Only 6 TSAs across 3 shifts.
+Many alerts are false alarms or informational.
+Engineers spend time checking alerts that don't require action.
+Some alerts need re-checks after 30–60 minutes and people forget them.
+What AAMS Does in Simple Words
+Imagine a junior support engineer who:
+✅ Never sleeps
+✅ Never forgets
+✅ Reads SOPs instantly
+✅ Reads old RCA documents
+✅ Checks logs automatically
+✅ Documents everything
+✅ Escalates only when required
+That's AAMS.
+Complete Alert Journey (Simplified)
+Step 1: Alert Arrives
+Monitoring tool raises an alert.
+Example:
+Disk Utilization on Server ABC = 82%
+Salesforce creates a ticket.
+AAMS immediately sees it.
+Step 2: AAMS Acknowledges Ticket
+Instead of waiting for a TSA:
+AAMS writes:
+Alert acknowledged. Investigation in progress.
+This helps meet SLA requirements immediately.
+Step 3: AAMS Investigates
+AAMS gathers evidence.
+It checks:
+Logs
+Service status
+Historical incidents
+KB articles
+SOPs
+RCA documents
+Example:
+Disk cleanup job runs every night.
+Current usage = 82%.
+No errors found.
+Similar alert closed automatically before.
+AAMS builds evidence.
+Step 4: AI Makes a Decision
+Now AI decides:
+Possibility A
+False Positive
+Example:
+Monitoring glitch.
+Server healthy.
+→ Close ticket
+Possibility B
+Informational
+Example:
+CPU spike for 2 minutes.
+Returned to normal.
+→ Close ticket
+Possibility C
+Needs Recheck
+Example:
+Disk Usage = 82%
+Not critical yet.
+Check again after 60 minutes.
+→ Put on Watch Mode
+Possibility D
+Needs Human
+Example:
+Production database unavailable.
+→ Escalate immediately
+The Watch Mode (Actually the Coolest Feature)
+Suppose:
+Disk usage = 80%
+Human today:
+Sees alert
+Makes note
+Remembers to check later
+AAMS:
+Alert detected
+↓
+Schedule re-check in 60 mins
+↓
+Wake up automatically
+↓
+Check again
+If disk becomes:
+65%
+Close ticket.
+If disk becomes:
+95%
+Escalate immediately.
+Nobody has to remember anything.
+What AI Is Actually Deciding
+The AI outputs one of these:
+
+
+Decision
+Meaning
+AUTO-CLOSE
+Close ticket
+DEFERRED-WATCH
+Check later
+ASSIGN-L1
+Send to L1
+ASSIGN-L2
+Send to L2
+ESCALATE
+Send urgent notification
+HUMAN APPROVAL
+Ask leader before closing
+What Happens After Decision
+Auto Close
+Ticket gets:
+Summary
+Evidence
+Reasoning
+Closure notes
+Then closes automatically.
+Assign to Team
+AAMS:
+Changes priority
+Routes to correct queue
+Sends notification email
+Adds investigation notes
+Human Approval
+For P1/P2/P3:
+AAMS NEVER closes directly.
+Instead:
+AAMS recommendation
+↓
+Team Lead review
+↓
+Approve / Reject
+↓
+Close
+Safety control built in.
+One-Line Architecture Explanation
+The architecture section is huge, but for demo purposes:
+Salesforce Alerts
+          ↓
+     AAMS Engine
+          ↓
+ Log Analysis
+          ↓
+      AI Brain
+          ↓
+ Decision Engine
+          ↓
+ Close / Route / Watch
+          ↓
+ Dashboard
+What You Should Build for a Prototype
+Honestly, if your objective is:
+"Show management a working MVP"
+You do NOT need the full architecture.
+You need only 4 screens.
+Prototype Version 0.1
+Screen 1: Alert Queue
+Table:
+
+
+Ticket
+Priority
+Alert
+A1001
+P4
+Disk 80%
+A1002
+P2
+Service Down
+A1003
+P4
+CPU Spike
+Screen 2: AI Analysis
+Select Alert:
+Ticket : A1001
+
+Alert:
+Disk Usage 80%
+
+Logs:
+Disk usage stable for 4 hours.
+
+Historical KB:
+Similar alert classified informational.
+
+AI Decision:
+Deferred Watch
+
+Confidence:
+92%
+Screen 3: Action Performed
+Ticket A1001
+
+Action:
+Recheck after 60 mins
+
+Status:
+Watching
+
+Reason:
+Threshold not critical.
+Or
+Action:
+Closed Automatically
+Screen 4: Dashboard
+Simple counters:
+Alerts Received = 50
+
+Closed by AI = 30
+
+Under Watch = 10
+
+Assigned to L1 = 8
+
+Needs Approval = 2
+This alone will communicate 80% of the concept.
+What I Would Demo To Leadership
+Scenario 1 – Auto Close
+CPU Spike Alert
+↓
+AI checks logs
+↓
+No issue found
+↓
+Ticket closed
+↓
+Audit entry created
+Scenario 2 – Watch Mode
+Disk 80%
+↓
+AI decides monitor
+↓
+Schedules recheck
+↓
+After 60 mins disk = 65%
+↓
+Auto close
+Scenario 3 – Escalation
+Database Service Down
+↓
+AI checks logs
+↓
+Detects genuine outage
+↓
+Priority upgraded
+↓
+Assigned to L2
+↓
+Email notification sent
+If I Were Creating the First Prototype
+I would build only these 5 components:
+Mock Alert Generator
+Alert Queue Screen
+AI Classification Engine (rule-based initially)
+Action Engine (Close / Watch / Assign)
+Dashboard
+Skip for now:
+Salesforce integration
+Real SSH access
+Real log retrieval
+Gemma/Ollama
+Approval workflow
+RAG ingestion
+Audit database
+These can be simulated with sample data.
+The goal of the first demo is not to prove the technology.
+The goal is to make leadership see:
+"An alert comes in, AI analyses it, decides what to do, takes action, and shows the result on a dashboard."
