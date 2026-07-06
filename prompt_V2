@@ -1,0 +1,465 @@
+You are a Senior Full Stack Architect and Product Designer.
+
+Build a working prototype named:
+
+AI-Powered Alert Monitoring System (AAMS)
+
+IMPORTANT:
+This is NOT the final production application.
+
+This is a leadership demonstration prototype intended to showcase the future vision of an AI-driven alert monitoring platform.
+
+The demo should feel realistic, visually impressive, interactive, and believable, but use mock data and simulated AI decisions.
+
+-----------------------------------------
+BUSINESS CONTEXT
+-----------------------------------------
+
+AAMS is an autonomous AI agent that monitors infrastructure alerts.
+
+Current process:
+
+1. Alerts arrive into a ticket queue.
+2. Technical Support Agents manually investigate.
+3. Agents check logs.
+4. Agents decide whether to:
+- Close
+- Escalate
+- Route
+- Monitor
+
+Future State:
+
+AAMS performs these tasks automatically.
+
+For the prototype, simulate this workflow.
+
+-----------------------------------------
+TECHNOLOGY STACK
+-----------------------------------------
+
+Frontend:
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+Backend:
+- Node.js Express
+OR FastAPI
+
+Database:
+- Local JSON or SQLite
+
+No authentication needed.
+
+No external dependencies required.
+
+Everything should run locally.
+
+-----------------------------------------
+OBJECTIVE OF DEMO
+-----------------------------------------
+
+Leadership should understand this story:
+
+"An alert comes in.
+AAMS analyzes it.
+AAMS decides what to do.
+AAMS performs an action.
+Management can see everything on a dashboard."
+
+The entire demo should be understandable within 3-5 minutes.
+
+-----------------------------------------
+APPLICATION STRUCTURE
+-----------------------------------------
+
+Create 5 pages:
+
+1. Dashboard
+2. Alert Queue
+3. Alert Details & AI Analysis
+4. Watch Center
+5. Audit Trail
+
+-----------------------------------------
+PAGE 1 - EXECUTIVE DASHBOARD
+-----------------------------------------
+
+Create KPI cards:
+
+Total Alerts Today
+Alerts Closed by AAMS
+Alerts Escalated
+Alerts Under Watch
+Alerts Assigned to L1
+Alerts Assigned to L2
+Pending Approval
+
+Create charts:
+
+Alerts by Priority
+(P1/P2/P3/P4)
+
+Alerts by Type
+(Server / Network / Application)
+
+AAMS Actions
+(Closed / Routed / Watch / Escalated)
+
+30 Day Trend Chart
+
+Use mock data.
+
+Make it executive friendly.
+
+-----------------------------------------
+PAGE 2 - ALERT QUEUE
+-----------------------------------------
+
+Display alert tickets.
+
+Columns:
+
+Ticket ID
+Priority
+Alert Type
+Device
+Created Time
+Status
+AAMS Decision
+
+Provide sample alerts:
+
+A1001
+Disk Usage 80%
+P4
+
+A1002
+Database Service Down
+P1
+
+A1003
+CPU Spike
+P4
+
+A1004
+Network Latency
+P2
+
+A1005
+Windows Service Restarted
+P4
+
+Add:
+
+Search
+Filters
+Priority Filter
+
+Clicking an alert opens details page.
+
+-----------------------------------------
+PAGE 3 - ALERT DETAILS
+-----------------------------------------
+
+This is the hero screen.
+
+Show:
+
+Ticket Information
+
+Alert Description
+
+Simulated Logs
+
+Example:
+
+--------------------------------
+Disk Usage Alert
+--------------------------------
+
+Current Disk Usage: 82%
+
+Last 6 Hours:
+79%
+80%
+81%
+82%
+
+Cleanup Job:
+Successful
+
+No application errors found
+
+--------------------------------
+
+Then show:
+
+AI Investigation Panel
+
+Example:
+
+Evidence Reviewed:
+- System logs
+- Historical incidents
+- SOP Reference
+
+AI Assessment:
+Disk usage elevated but stable.
+
+Decision:
+Deferred Watch
+
+Confidence:
+92%
+
+Reasoning:
+Pattern matches previous informational alerts.
+No signs of service impact.
+Recommend re-evaluation after 60 minutes.
+
+-----------------------------------------
+
+Display a colored decision card.
+
+AUTO CLOSE
+WATCH
+ESCALATE
+ASSIGN L1
+ASSIGN L2
+
+-----------------------------------------
+PAGE 4 - WATCH CENTER
+-----------------------------------------
+
+Display alerts under observation.
+
+Example:
+
+Ticket A1001
+Disk Usage
+
+Current Status:
+Monitoring
+
+Recheck In:
+45 Minutes
+
+Last Reading:
+82%
+
+Expected Action:
+Re-evaluate
+
+Provide button:
+
+Run Recheck
+
+When clicked:
+
+Randomly show:
+
+Scenario A:
+
+Disk drops to 65%
+Decision: Close Alert
+
+Scenario B:
+
+Disk rises to 95%
+Decision: Escalate
+
+Show animated status updates.
+
+-----------------------------------------
+PAGE 5 - AUDIT TRAIL
+-----------------------------------------
+
+Show all AAMS actions.
+
+Columns:
+
+Timestamp
+Ticket
+Action
+Reason
+Outcome
+
+Examples:
+
+Acknowledged Alert
+
+Classified Alert
+
+Auto Closed
+
+Assigned to L2
+
+Watch Created
+
+Escalation Triggered
+
+Use realistic audit records.
+
+-----------------------------------------
+SIMULATED AI ENGINE
+-----------------------------------------
+
+DO NOT USE A REAL LLM.
+
+Create a rules engine.
+
+Rules:
+
+IF alert contains:
+"CPU spike"
+AND CPU <90%
+
+THEN
+Auto Close
+
+----------------
+
+IF alert contains:
+"Disk"
+
+AND value between
+80 and 90
+
+THEN
+Watch
+
+----------------
+
+IF alert contains:
+"Database Down"
+
+THEN
+Escalate P1
+
+----------------
+
+IF alert contains:
+"Network Latency"
+
+THEN
+Assign L2
+
+----------------
+
+Generate reasoning text dynamically.
+
+Make it appear AI-generated.
+
+-----------------------------------------
+DEMO SCENARIOS
+-----------------------------------------
+
+Include buttons:
+
+Run Scenario 1
+Run Scenario 2
+Run Scenario 3
+
+Scenario 1:
+Auto Close Alert
+
+Scenario 2:
+Watch → Recheck → Close
+
+Scenario 3:
+Critical Escalation
+
+These buttons should animate the workflow.
+
+-----------------------------------------
+VISUAL DESIGN
+-----------------------------------------
+
+Make it look enterprise-grade.
+
+Theme:
+
+Dark modern operations center
+
+Colors:
+
+Green:
+Resolved
+
+Yellow:
+Watching
+
+Red:
+Critical
+
+Blue:
+Processing
+
+Use:
+
+Status badges
+Progress indicators
+Charts
+Animated transitions
+
+Dashboard should feel similar to:
+
+Datadog
+Splunk
+Dynatrace
+ServiceNow Operations Center
+
+-----------------------------------------
+LEADERSHIP WOW FACTOR
+-----------------------------------------
+
+Add a top panel:
+
+"AAMS AI Activity Feed"
+
+Example:
+
+09:11 AM
+Investigating Disk Alert A1001
+
+09:12 AM
+AI classified alert as WATCH
+
+09:13 AM
+Recheck scheduled in 60 mins
+
+09:16 AM
+Database Service outage detected
+
+09:16 AM
+Critical escalation triggered
+
+This should continuously update during demo scenarios.
+
+-----------------------------------------
+DEMO MESSAGE
+-----------------------------------------
+
+Every screen should reinforce:
+
+"AAMS reduces manual alert triage effort and accelerates response by autonomously investigating and acting on alerts."
+
+-----------------------------------------
+DELIVERABLE
+-----------------------------------------
+
+Generate complete source code.
+
+Create:
+
+Frontend
+Backend
+Mock API
+Sample Data
+
+Provide setup instructions.
+
+Ensure application runs locally and demonstrates a complete alert lifecycle without external integrations.
